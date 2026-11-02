@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://portfolio-iyed-iota.vercel.app/sitemap.xml

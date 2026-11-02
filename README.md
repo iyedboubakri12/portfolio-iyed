@@ -1,48 +1,37 @@
-# Portfolio — Iyed Boubakri
+# Iyed Boubakri – Portfolio
 
-Site personnel créé avec React + Vite pour présenter mes projets, compétences et expériences.
+Personal portfolio of **Iyed Boubakri**, Junior DevOps / DevSecOps / Cloud Engineer (ESPRIT, Tunisia).
 
-Résumé rapide
+**Live site:** https://portfolio-iyed-iota.vercel.app
 
-- Développeur Full‑Stack — React, TypeScript, Node.js, Express, PostgreSQL
-- Focus : interfaces modernes, API robustes et code maintenable
-- Statut : ouvert aux opportunités (CDI / freelance)
+## Content
 
-Démonstration locale
+- Hero, About, Technical Skills, Featured Projects, Experience, Certifications, Contact
+- `/projects/devsecops-pfe`: a dedicated page for the final-year DevSecOps project, with
+  - an interactive explorer of the 13 GitLab CI/CD stages
+  - a step-by-step walkthrough of the runtime loop: attack → Falco → AI agent (Groq / Llama 3.3) → Slack approval → patch
+  - real screenshots from the project environment (the PFE cluster has been shut down, so there is no live production URL)
+- Downloadable CV (`public/cv/`)
 
-1. cd portfolio
-2. npm install
-3. npm run dev
+## Stack
 
-Tech & Outils
+React 19 · TypeScript · Vite. No UI framework and no router dependency. A small history-based router plus `vercel.json` rewrites serve `/projects/*`.
 
-- Frontend : React, Vite, TypeScript
-- Backend : Node.js, Express
-- Bases de données : PostgreSQL
-- Tests / Qualité : Jest, ESLint, Prettier
-- Déploiement : GitHub Actions / Vercel / Netlify (exemples)
+SEO: meta and Open Graph tags, JSON-LD `Person`, `sitemap.xml`, `robots.txt`. Images are served as WebP (about 0.9 MB for all screenshots).
 
-Projets en vedette
+## Run locally
 
-- Portfolio (ce repo) — site personnel (UI + démos). Voir le dossier `src` pour le code.
-- Project A — courte description (remplacer par un projet réel et lien)
-- Project B — courte description (remplacer par un projet réel et lien)
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # type-check + production build in dist/
+npm run lint
+```
 
-Commentaire pour recruteurs
+## Deployment
 
-- Pour une évaluation technique, je fournis un résumé de l'architecture, les choix techniques et des scripts pour lancer les démos.
-- CV et références disponibles sur demande (ou ajoutez un lien public ici).
+Every push to `main` is deployed automatically by Vercel.
 
-Contact
+## Project content
 
-- Email : email@example.com
-- LinkedIn : https://www.linkedin.com/in/iyedboubakri (remplacer par le lien réel)
-
-Améliorations possibles
-
-- Ajouter captures d'écran, live demo, et liens directs vers les PRs/commits marquants.
-- Ajouter un fichier RELEASES ou CHANGES pour montrer l'historique des évolutions.
-
-Remarque
-
-Personnalise ce README en ajoutant descriptions réelles des projets et liens vers les démos pour maximiser l'impact auprès des recruteurs.
+Site text lives in `src/data.ts` (profile, skills, projects, experience, certifications) and `src/pfe.ts` (pipeline stages, demo steps, gallery).
