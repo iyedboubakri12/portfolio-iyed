@@ -115,8 +115,8 @@ p { margin: 0 0 1em; }
 .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.75rem; font-weight: 700; color: var(--accent-2); margin-bottom: 0.6em; }
 .section__title { font-size: clamp(1.6rem, 3.6vw, 2.3rem); margin-bottom: 1.2em; max-width: 760px; }
 
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
-.reveal.is-visible { opacity: 1; transform: none; }
+.js-reveal .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.js-reveal .reveal.is-visible { opacity: 1; transform: none; }
 
 .card { background: linear-gradient(180deg, var(--surface), var(--bg-2)); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.4rem; transition: border-color 0.25s, transform 0.25s; }
 .card:hover { border-color: #33456b; }
@@ -305,7 +305,7 @@ p { margin: 0 0 1em; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-  .reveal { opacity: 1; transform: none; }
+  .js-reveal .reveal { opacity: 1; transform: none; }
 }
 
 /* Grid children must be allowed to shrink below their content width */
