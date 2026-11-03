@@ -8,10 +8,11 @@ const LINKS = [
   ['Projects', '/#projects'],
   ['Experience', '/#experience'],
   ['Certifications', '/#certifications'],
+  ['Blog', '/blog'],
   ['Contact', '/#contact'],
 ]
 
-export function Nav({ onProjectPage }: { onProjectPage: boolean }) {
+export function Nav({ onSubPage }: { onSubPage: boolean }) {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
@@ -39,7 +40,7 @@ export function Nav({ onProjectPage }: { onProjectPage: boolean }) {
           <span /><span /><span />
         </button>
         <nav id="nav-menu" className={`nav__menu ${open ? 'is-open' : ''}`} aria-label="Main">
-          {onProjectPage && <a href="/" onClick={() => setOpen(false)}>← Home</a>}
+          {onSubPage && <a href="/" onClick={() => setOpen(false)}>← Home</a>}
           {LINKS.map(([label, href]) => (
             <a key={href} href={href} onClick={() => setOpen(false)}>{label}</a>
           ))}

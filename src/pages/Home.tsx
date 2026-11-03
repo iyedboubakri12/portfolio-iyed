@@ -2,6 +2,8 @@ import { ABOUT, CERTIFICATIONS, EDUCATION, EXPERIENCE, HIGHLIGHTS, PROFILE, PROJ
 import { Section } from '../components/Layout'
 import { ArrowIcon, DownloadIcon, GitHubIcon, LinkedInIcon, MailIcon } from '../components/Icons'
 import { useReveal } from '../useReveal'
+import { POSTS, BLOG_PATH } from '../blog/posts'
+import { PostCard } from './Blog'
 
 export default function Home() {
   useReveal()
@@ -115,6 +117,13 @@ export default function Home() {
             </li>
           ))}
         </ul>
+      </Section>
+
+      <Section id="blog" eyebrow="Blog" title="Latest articles on DevOps and DevSecOps">
+        <div className="posts">
+          {POSTS.slice(0, 3).map((p) => <PostCard key={p.slug} post={p} />)}
+        </div>
+        <p className="blog-more"><a className="btn btn--ghost" href={BLOG_PATH}>All {POSTS.length} articles <ArrowIcon /></a></p>
       </Section>
 
       <Section id="contact" eyebrow="Contact" title="Let's talk">
