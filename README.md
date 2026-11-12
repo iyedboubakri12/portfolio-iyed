@@ -68,8 +68,11 @@ See `.env.example`.
 |---|---|---|
 | `LLM_PROVIDER` | no* | `anthropic`, `groq`, `openai`, `gemini`, `openrouter`, `mistral`, `openai-compatible` |
 | `LLM_API_KEY` | no* | key for that provider (`ANTHROPIC_API_KEY` / `GROQ_API_KEY` / … also work) |
-| `LLM_MODEL` | depends | default `claude-opus-5-5` (anthropic), `llama-3.3-70b-versatile` (groq); required otherwise |
+| `LLM_MODEL` | depends | default `claude-opus-5-5` (anthropic), `openai/gpt-oss-120b` (groq); required otherwise |
 | `LLM_BASE_URL` | openai-compatible only | e.g. `https://my-gateway/v1` |
+| `LLM_FALLBACK_MODEL` | no | used when the main model is rate-limited; Groq default `openai/gpt-oss-20b`, `none` to disable |
+| `LLM_REASONING_EFFORT` | no | for reasoning models (gpt-oss, qwen3…), default `low` |
+| `LLM_PROFILE` | no | `full` sends the whole knowledge base each time (needs high rate limits); default compact + retrieval |
 | `RATE_LIMIT_PER_MINUTE` / `RATE_LIMIT_PER_DAY` | no | per IP, default 8 / 60 |
 | `LLM_DAILY_CAP` | no | global LLM calls per day, default 1500 |
 | `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` | recommended in prod | shared rate-limit counters |

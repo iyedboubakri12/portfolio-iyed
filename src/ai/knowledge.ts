@@ -9,7 +9,7 @@
 // This module is imported by the browser bundle AND by the serverless function
 // in /api, so it must stay free of browser-only APIs. Relative imports use the
 // `.js` extension so they also resolve in Node ESM on Vercel.
-import { CERTIFICATIONS, EDUCATION, EXPERIENCE, HIGHLIGHTS, PFE_PATH, PFE_REPO, PROFILE, PROJECTS, IMG } from '../data.js'
+import { CERTIFICATIONS, EDUCATION, PRIOR_EDUCATION, EXPERIENCE, HIGHLIGHTS, PFE_PATH, PFE_REPO, PROFILE, PROJECTS, IMG } from '../data.js'
 import { DEMO, STAGES } from '../pfe.js'
 
 export const SITE_URL = 'https://portfolio-iyed-iota.vercel.app'
@@ -371,6 +371,45 @@ export const NOT_DOCUMENTED_TOPICS = [
   'years of professional experience beyond the internships listed',
 ]
 
+/**
+ * Compact profile (~2k tokens) sent with every request. Details (project
+ * write-ups, pipeline stages, articles, skill details) are retrieved per
+ * question, which keeps requests small enough for free-tier rate limits.
+ */
+export function compactProfileText(): string {
+  const exp = EXPERIENCE.map((e) => `- ${e.role} — ${e.company}, ${e.dates}: ${e.bullets.map((b) => b.split('. ')[0].replace(/\.$/, '')).join('; ')}.`).join('\n')
+  const certs = CERTIFICATIONS.map((c) => `${c.name} (${c.inProgress ? 'IN PREPARATION, NOT OBTAINED' : `${c.issuer}, ${c.date}`})`).join('; ')
+  const byLevel = (l: EvidenceLevel) => SKILL_EVIDENCE.filter((s) => s.level === l).map((s) => s.label).join(', ')
+  return `# Candidate: ${PROFILE.name}
+${PROFILE.title}. Graduated 2026; looking for a first full-time role as Junior DevOps, DevSecOps, Cloud or Cloud Security Engineer.
+Location & mobility: ${PROFILE.location}. Languages: Arabic (native), French (professional), English (professional).
+
+Education: ${EDUCATION.degree} — ${EDUCATION.school} (${EDUCATION.dates}). ${PRIOR_EDUCATION.degree} — ${PRIOR_EDUCATION.school} (${PRIOR_EDUCATION.dates}).
+
+Experience:
+${exp}
+- Intern — ESPRIT (Tunis), Jul–Aug 2024: carpooling web/mobile app (Symfony, Angular, JWT, MySQL).
+
+Main project: ${PROJECTS[0].name}. It IS the SFM Technologies final-year internship (Jan–Jun 2026): the PFE and the SFM internship are one and the same experience, never present them as two. 13-stage / 32-job GitLab CI pipeline, GitOps with Argo CD to a 3-node DigitalOcean Kubernetes cluster, OPA Conftest + Gatekeeper, Trivy, SonarQube, Gitleaks, OWASP ZAP, Cosign + CycloneDX SBOM, DefectDojo, Falco, Prometheus/Grafana, and a Python AI agent (RAG + Llama 3.3 70B via Groq) that proposes fixes in Slack for human approval.
+Reported results (his own measurements): ${HIGHLIGHTS.map((h) => `${h.label} ${h.value}`).join('; ')}.
+Other projects: STB Bank secure banking microservices (.NET Core, Angular, JWT/OAuth2, Jenkins); sports training platform (Spring Boot REST API + frontend); ESPRIT carpooling app; Azure AKS masterclass (forked training lab, not original work).
+
+Certifications & training: ${certs}; Building Transformer-Based NLP Applications and Fundamentals of Deep Learning (issuer not documented).
+
+Skill evidence levels:
+- Hands-on in a project: ${byLevel('project')}
+- Used in an internship: ${byLevel('internship')}
+- Training / lab only: ${byLevel('training')}
+- Not documented: ${byLevel('none')}
+
+Limitations Iyed documents himself: most PFE security jobs were report-only (\`|| true\` / allow_failure), so they did not block deployments; images were signed even when the scan found issues; gaps in the Gatekeeper policies; the cluster and tools were shut down after the defence (no live demo, only real screenshots); the Flask + Slack Bolt runtime agent is not in the public repository.
+
+Not documented (say so, suggest contacting Iyed): ${NOT_DOCUMENTED_TOPICS.join('; ')}.
+
+Links: portfolio ${SITE_URL} · recruiter mode ${RECRUITER_PATH} · DevSecOps project ${PFE_PATH} · GitHub ${PROFILE.github} · repository ${PFE_REPO} · LinkedIn ${PROFILE.linkedin} · CV ${PROFILE.cv} · email ${PROFILE.email}`
+}
+
+/** Full profile (kept for reference and for providers with large limits). */
 export function coreProfileText(): string {
   const exp = EXPERIENCE.map((e) => `- ${e.role} — ${e.company} (${e.place}), ${e.dates}\n${e.bullets.map((b) => `  • ${b}`).join('\n')}`).join('\n')
   const certs = CERTIFICATIONS.map((c) => `- ${c.name} — ${c.issuer} — ${c.inProgress ? 'IN PREPARATION, NOT OBTAINED' : c.date}`).join('\n')
@@ -388,7 +427,7 @@ Languages: Arabic (native), French (professional), English (professional).
 
 ## Education
 - ${EDUCATION.degree} — ${EDUCATION.school} (${EDUCATION.dates}, graduated 2026).
-- Bachelor's degree (Licence) in Electronics, Electrical Engineering and Automation — Faculty of Sciences of Gabès, University of Gabès (2020–2023).
+- ${PRIOR_EDUCATION.degree} — ${PRIOR_EDUCATION.school} (${PRIOR_EDUCATION.dates}).
 
 ## Experience
 ${exp}
