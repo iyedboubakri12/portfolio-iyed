@@ -9,6 +9,7 @@ const LINKS = [
   ['Experience', '/#experience'],
   ['Certifications', '/#certifications'],
   ['Blog', '/blog'],
+  ['Recruiter mode', '/recruiter'],
   ['Contact', '/#contact'],
 ]
 

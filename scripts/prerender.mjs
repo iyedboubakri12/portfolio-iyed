@@ -114,6 +114,7 @@ const latest = posts[0]?.date ?? new Date().toISOString().slice(0, 10)
 const urls = [
   ['/', latest, '1.0'],
   ['/projects/devsecops-pfe', '2026-11-02', '0.9'],
+  ['/recruiter', '2026-11-12', '0.8'],
   ['/blog', latest, '0.8'],
   ...posts.map((p) => [`/blog/${p.slug}`, p.date, '0.7']),
 ]

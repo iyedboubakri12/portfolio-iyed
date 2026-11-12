@@ -1,9 +1,10 @@
-import { ABOUT, CERTIFICATIONS, EDUCATION, EXPERIENCE, HIGHLIGHTS, PROFILE, PROJECTS, SKILLS } from '../data'
+import { ABOUT, CERTIFICATIONS, EDUCATION, PRIOR_EDUCATION, EXPERIENCE, HIGHLIGHTS, PROFILE, PROJECTS, SKILLS } from '../data'
 import { Section } from '../components/Layout'
 import { ArrowIcon, DownloadIcon, GitHubIcon, LinkedInIcon, MailIcon } from '../components/Icons'
 import { useReveal } from '../useReveal'
 import { POSTS, BLOG_PATH } from '../blog/posts'
 import { PostCard } from './Blog'
+import { RecruiterTeaser } from '../components/recruiter/RecruiterTeaser'
 
 export default function Home() {
   useReveal()
@@ -22,6 +23,7 @@ export default function Home() {
           <div className="hero__actions">
             <a className="btn" href="#projects">View Projects <ArrowIcon /></a>
             <a className="btn btn--ghost" href={PROFILE.cv} download><DownloadIcon /> Download CV</a>
+            <a className="btn btn--ghost" href="/recruiter">✦ Recruiter mode</a>
             <a className="btn btn--ghost" href="#contact">Contact Me</a>
           </div>
           <ul className="hero__stats" aria-label="Key results">
@@ -41,6 +43,8 @@ export default function Home() {
             <h3>Education</h3>
             <p><strong>{EDUCATION.degree}</strong></p>
             <p className="muted">{EDUCATION.school} · {EDUCATION.dates}</p>
+            <p><strong>{PRIOR_EDUCATION.degree}</strong></p>
+            <p className="muted">{PRIOR_EDUCATION.school} · {PRIOR_EDUCATION.dates}</p>
             <h3>Languages</h3>
             <p className="muted">Arabic (native) · French (professional) · English (professional)</p>
             <h3>Location</h3>
@@ -125,6 +129,8 @@ export default function Home() {
         </div>
         <p className="blog-more"><a className="btn btn--ghost" href={BLOG_PATH}>All {POSTS.length} articles <ArrowIcon /></a></p>
       </Section>
+
+      <RecruiterTeaser />
 
       <Section id="contact" eyebrow="Contact" title="Let's talk">
         <div className="contact">

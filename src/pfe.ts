@@ -1,4 +1,4 @@
-import { IMG } from './data'
+import { IMG } from './data.js'
 
 export type Stage = {
   n: number

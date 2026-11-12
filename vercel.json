@@ -9,6 +9,10 @@
       "destination": "/blog/:slug/index.html"
     },
     {
+      "source": "/recruiter",
+      "destination": "/index.html"
+    },
+    {
       "source": "/projects/:path*",
       "destination": "/index.html"
     }
@@ -44,5 +48,14 @@
         }
       ]
     }
-  ]
+  ],
+  "functions": {
+    "api/chat.ts": {
+      "maxDuration": 60,
+      "includeFiles": "content/blog/**"
+    },
+    "api/status.ts": {
+      "maxDuration": 5
+    }
+  }
 }

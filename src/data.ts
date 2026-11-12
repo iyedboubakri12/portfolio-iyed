@@ -113,5 +113,11 @@ export const CERTIFICATIONS = [
 export const EDUCATION = {
   degree: 'National Engineering Degree in Computer Science – Software Engineering',
   school: 'ESPRIT, Tunis',
-  dates: '2021 – 2026',
+  dates: '2023 – 2026',
+}
+
+export const PRIOR_EDUCATION = {
+  degree: "Bachelor's degree (Licence) in Electronics, Electrical Engineering and Automation",
+  school: 'Faculty of Sciences of Gabès, University of Gabès',
+  dates: '2020 – 2023',
 }

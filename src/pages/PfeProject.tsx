@@ -4,6 +4,7 @@ import { DEMO, GALLERY, STAGES, type Stage } from '../pfe'
 import { Lightbox } from '../components/Layout'
 import { ArrowIcon, GitHubIcon } from '../components/Icons'
 import { useReveal } from '../useReveal'
+import { openAssistant } from '../ai/client'
 
 const GROUP_LABEL: Record<Stage['group'], string> = {
   build: 'Build & test',
@@ -34,6 +35,8 @@ export default function PfeProject() {
           <div className="hero__actions">
             <a className="btn" href="#demo">Start the walkthrough <ArrowIcon /></a>
             <a className="btn btn--ghost" href={PFE_REPO} target="_blank" rel="noopener noreferrer"><GitHubIcon size={16} /> Source code</a>
+            <a className="btn btn--ghost" href="/recruiter#architecture">Interactive architecture</a>
+            <button className="btn btn--ghost" onClick={() => openAssistant({ tab: 'chat', prompt: 'Give me a 1-minute overview of this DevSecOps project and what Iyed built himself.' })}>✦ Ask about this project</button>
           </div>
           <div className="notice" role="note">
             <strong>About this demo.</strong> The DOKS cluster, SonarQube, DefectDojo and the Slack workspace used during the PFE have been shut down after the defence, so there is no public live URL.

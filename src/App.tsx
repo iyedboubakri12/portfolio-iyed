@@ -6,6 +6,9 @@ import Home from './pages/Home'
 import PfeProject from './pages/PfeProject'
 import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
+import Recruiter from './pages/Recruiter'
+import Assistant from './components/assistant/Assistant'
+import { RECRUITER_PATH } from './ai/knowledge'
 
 const HOME_TITLE = 'Iyed Boubakri – Junior DevOps & DevSecOps Engineer | Kubernetes, GitLab CI/CD, Cloud'
 
@@ -18,7 +21,7 @@ function usePath() {
       if (!a || a.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey) return
       const url = new URL(a.href, window.location.href)
       if (url.origin !== window.location.origin || url.pathname === window.location.pathname) return
-      if (url.pathname.startsWith('/cv/') || url.pathname.endsWith('.xml')) return
+      if (url.pathname.startsWith('/cv/') || /\.[a-z0-9]+$/i.test(url.pathname)) return
       e.preventDefault()
       window.history.pushState({}, '', url.pathname + url.hash)
       setPath(url.pathname)
@@ -44,6 +47,7 @@ export default function App() {
   const path = usePath()
   const isPfe = path === PFE_PATH
   const isBlog = path === BLOG_PATH
+  const isRecruiter = path === RECRUITER_PATH
   const postSlug = path.startsWith(BLOG_PATH + '/') ? path.slice(BLOG_PATH.length + 1) : null
   const post = postSlug ? POSTS.find((p) => p.slug === postSlug) : undefined
 
@@ -52,14 +56,16 @@ export default function App() {
     else if (postSlug) setMeta('Article not found – Iyed Boubakri')
     else if (isBlog) setMeta('Blog – DevOps & DevSecOps articles by Iyed Boubakri', 'Practical articles on secure CI/CD, Kubernetes, Policy-as-Code, supply chain security and runtime detection.')
     else if (isPfe) setMeta('DevSecOps Platform with AI Remediation – Iyed Boubakri')
+    else if (isRecruiter) setMeta('Recruiter mode – Iyed Boubakri, Junior DevOps & DevSecOps Engineer', 'Evaluate Iyed Boubakri with evidence: skill evidence levels, project explorer, interactive DevSecOps architecture, job-description match and technical interview questions.')
     else setMeta(HOME_TITLE)
     if (window.location.hash) document.querySelector(window.location.hash)?.scrollIntoView()
-  }, [isPfe, isBlog, post, postSlug])
+  }, [isPfe, isBlog, isRecruiter, post, postSlug])
 
   let page
   if (postSlug) page = <BlogPost post={post} />
   else if (isBlog) page = <Blog />
   else if (isPfe) page = <PfeProject />
+  else if (isRecruiter) page = <Recruiter />
   else page = <Home />
 
   return (
@@ -68,6 +74,7 @@ export default function App() {
       <Nav onSubPage={path !== '/'} />
       <main id="main">{page}</main>
       <Footer />
+      <Assistant />
     </>
   )
 }
