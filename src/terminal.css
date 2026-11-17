@@ -155,3 +155,9 @@ h1, h2, .section__title, .nav__brand { font-family: var(--mono); letter-spacing:
 @media (prefers-reduced-motion: reduce) {
   .caret { animation: none; }
 }
+
+/* Project card images */
+.repo__media { position: relative; display: block; margin: -0.35rem -0.35rem 0.6rem; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: #0d1117; }
+.repo__media img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: top center; transition: transform 0.4s; }
+.repo__media:hover img { transform: scale(1.03); }
+.repo__media span { position: absolute; left: 8px; bottom: 8px; font-family: var(--mono); font-size: 0.68rem; padding: 0.15em 0.55em; border-radius: 5px; background: rgb(6 8 12 / 0.85); border: 1px solid var(--border); color: var(--muted); }

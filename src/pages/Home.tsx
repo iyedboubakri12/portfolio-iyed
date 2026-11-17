@@ -14,10 +14,29 @@ const KIND_LABEL: Record<Project['kind'], string> = {
   lab: 'Lab · fork',
 }
 
+// What each card image actually shows (all are screenshots of the public GitHub pages).
+const IMAGE_CAPTION: Record<string, string> = {
+  'gha-pipeline': 'Real GitHub Actions run: every job green',
+  'terraform-aws': 'Architecture from the README',
+  'ansible-monitoring': 'Architecture from the README',
+  backendsport: 'Repository on GitHub',
+  'aks-lab': 'Course modules (forked repository)',
+  'online-boutique': 'Upstream architecture: 11 gRPC services',
+  'argocd-examples': 'Forked repository on GitHub',
+}
+
 function ProjectCard({ p }: { p: Project }) {
   const repoName = p.repo.replace('https://github.com/', '')
+  const key = p.image?.split('/').pop()?.replace('.webp', '') ?? ''
+  const caption = IMAGE_CAPTION[key]
   return (
     <article className={`repo repo--${p.kind}`}>
+      {p.image && (
+        <a className="repo__media" href={p.repo} target="_blank" rel="noopener noreferrer" tabIndex={-1}>
+          <img src={p.image} alt={`${p.name}: ${caption ?? 'screenshot'}`} loading="lazy" width="800" height="450" />
+          {caption && <span>{caption}</span>}
+        </a>
+      )}
       <header className="repo__head">
         <span className="repo__path"><GitHubIcon size={15} /> {repoName}</span>
         <span className={`badge badge--${p.kind}`}>{KIND_LABEL[p.kind]}</span>
