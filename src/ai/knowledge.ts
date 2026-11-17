@@ -65,7 +65,7 @@ export const SKILL_EVIDENCE: SkillEvidence[] = [
   { id: 'argocd', label: 'Argo CD / GitOps', category: 'CI/CD & GitOps', level: 'project', detail: 'Delivered the microservices to DOKS with Argo CD auto-sync and self-heal: the cluster is reconciled from the k8s/ manifests in Git.', evidence: [{ label: 'GitOps section', href: `${PFE}#kubernetes` }, { label: 'Screenshot: Synced & Healthy', href: `${IMG}/11-argocd-synced-healthy.webp` }], aliases: ['argo cd', 'argocd', 'argo', 'gitops', 'flux'] },
   { id: 'jenkins', label: 'Jenkins', category: 'CI/CD & GitOps', level: 'internship', detail: 'Automated build and deployment workflows with Jenkins during the STB Bank internship (2025).', evidence: [{ label: 'Experience: STB Bank', href: '/#experience' }], aliases: ['jenkins'] },
   { id: 'git', label: 'Git', category: 'CI/CD & GitOps', level: 'project', detail: 'Daily use; Git is the source of truth for the GitOps delivery and the Gitleaks scan covers the full history (420 commits).', evidence: [{ label: 'Repository', href: PFE_REPO }], aliases: ['git', 'version control', 'github', 'bitbucket'] },
-  { id: 'github-actions', label: 'GitHub Actions', category: 'CI/CD & GitOps', level: 'none', detail: 'Not documented. His CI/CD experience is with GitLab CI and Jenkins.', evidence: [], aliases: ['github actions', 'gh actions'] },
+  { id: 'github-actions', label: 'GitHub Actions', category: 'CI/CD & GitOps', level: 'project', detail: 'Personal project: a GitHub Actions pipeline with lint/tests, Gitleaks, OPA/Conftest (with policy unit tests), Trivy, a CycloneDX SBOM, a Helm deploy to a kind cluster inside CI with a smoke test, and Cosign keyless signing on GHCR. His professional CI/CD experience is GitLab CI (PFE) and Jenkins (STB).', evidence: [{ label: 'Repository: devsecops-github-actions-pipeline', href: 'https://github.com/iyedboubakri12/devsecops-github-actions-pipeline' }], aliases: ['github actions', 'gh actions'] },
 
   // Containers & Kubernetes
   { id: 'kubernetes', label: 'Kubernetes', category: 'Containers & Kubernetes', level: 'project', detail: 'Ran 7 microservice images on a 3-node DigitalOcean Kubernetes (DOKS) cluster with namespaces, RBAC, resource limits, Gatekeeper admission policies, Falco and kube-prometheus-stack. Preparing the CKA (not yet certified).', evidence: [{ label: 'Kubernetes & GitOps', href: `${PFE}#kubernetes` }, { label: 'Screenshot: pods on DOKS', href: `${IMG}/09-kubectl-pods-doks.webp` }, { label: 'Screenshot: self-healing', href: `${IMG}/12-kubernetes-self-heal.webp` }], aliases: ['kubernetes', 'k8s', 'kubectl', 'aks', 'eks', 'gke', 'doks', 'container orchestration', 'orchestration'] },
@@ -90,11 +90,11 @@ export const SKILL_EVIDENCE: SkillEvidence[] = [
 
   // Cloud & IaC
   { id: 'digitalocean', label: 'DigitalOcean (DOKS)', category: 'Cloud & IaC', level: 'project', detail: 'The PFE platform ran on a 3-node DigitalOcean Kubernetes cluster (since shut down after the defence).', evidence: [{ label: 'Physical architecture', href: `${PFE}#architecture` }], aliases: ['digitalocean', 'digital ocean', 'doks'] },
-  { id: 'aws', label: 'AWS', category: 'Cloud & IaC', level: 'training', detail: 'AWS Academy Graduate – Cloud Foundations (Nov 2025). No documented project on AWS.', evidence: [{ label: 'Certifications', href: '/#certifications' }], aliases: ['aws', 'amazon web services', 'ec2', 's3', 'iam', 'lambda', 'cloudformation', 'eks', 'ecs', 'rds', 'cloudwatch'] },
+  { id: 'aws', label: 'AWS', category: 'Cloud & IaC', level: 'training', detail: 'AWS Academy Graduate – Cloud Foundations (Nov 2025). He also wrote Terraform code targeting AWS (VPC, EC2, IAM, SSM) in a personal project, validated in CI; no documented live AWS deployment or work experience on AWS.', evidence: [{ label: 'Certifications', href: '/#certifications' }], aliases: ['aws', 'amazon web services', 'ec2', 's3', 'iam', 'lambda', 'cloudformation', 'eks', 'ecs', 'rds', 'cloudwatch'] },
   { id: 'azure', label: 'Microsoft Azure', category: 'Cloud & IaC', level: 'training', detail: 'Practised AKS through a forked hands-on lab repository (deployments, services, ingress, storage, Azure DevOps pipelines). No documented production project on Azure.', evidence: [{ label: 'AKS lab (fork)', href: 'https://github.com/iyedboubakri12/azure-aks-kubernetes-masterclass' }], aliases: ['azure', 'microsoft azure', 'azure devops', 'arm templates', 'bicep', 'entra'] },
   { id: 'gcp', label: 'Google Cloud', category: 'Cloud & IaC', level: 'none', detail: 'Not documented.', evidence: [], aliases: ['gcp', 'google cloud', 'cloud run', 'bigquery'] },
-  { id: 'terraform', label: 'Terraform', category: 'Cloud & IaC', level: 'training', detail: 'Training level. Terraform appears in the forked AKS lab he practised on; no Terraform code of his own is documented in the portfolio.', evidence: [{ label: 'AKS lab (fork)', href: 'https://github.com/iyedboubakri12/azure-aks-kubernetes-masterclass' }], aliases: ['terraform', 'infrastructure as code', 'iac', 'opentofu', 'pulumi', 'hcl'] },
-  { id: 'ansible', label: 'Ansible', category: 'Cloud & IaC', level: 'training', detail: 'Training level. No documented project use.', evidence: [], aliases: ['ansible', 'configuration management', 'puppet', 'chef', 'saltstack'] },
+  { id: 'terraform', label: 'Terraform', category: 'Cloud & IaC', level: 'project', detail: 'Personal project: reusable Terraform modules for an AWS web stack (VPC across 2 AZs, flow logs, hardened EC2 with IMDSv2, SSM instead of SSH), checked in CI with fmt, validate, TFLint and a Trivy IaC scan. No production Terraform experience and no documented live deployment.', evidence: [{ label: 'Repository: terraform-aws-webapp', href: 'https://github.com/iyedboubakri12/terraform-aws-webapp' }], aliases: ['terraform', 'infrastructure as code', 'iac', 'opentofu', 'pulumi', 'hcl'] },
+  { id: 'ansible', label: 'Ansible', category: 'Cloud & IaC', level: 'project', detail: 'Personal project: Ansible roles (base hardening, Docker, Prometheus/node_exporter/Grafana with alert rules and a provisioned dashboard). CI runs the playbook on an Ubuntu runner, checks idempotence and verifies the stack. No production Ansible experience.', evidence: [{ label: 'Repository: ansible-monitoring-stack', href: 'https://github.com/iyedboubakri12/ansible-monitoring-stack' }], aliases: ['ansible', 'configuration management', 'puppet', 'chef', 'saltstack'] },
   { id: 'linux', label: 'Linux', category: 'Cloud & IaC', level: 'project', detail: 'Operated the Ubuntu VM hosting the GitLab Runner, SonarQube and the AI agent; worked inside containers and cluster nodes.', evidence: [{ label: 'Physical architecture', href: `${PFE}#architecture` }], aliases: ['linux', 'ubuntu', 'debian', 'centos', 'rhel', 'red hat', 'unix', 'system administration', 'sysadmin'] },
   { id: 'networking', label: 'Networking (DNS, TCP/IP, load balancing)', category: 'Cloud & IaC', level: 'none', detail: 'Not documented as a standalone skill (Kubernetes services and ingress were used in the AKS lab).', evidence: [], aliases: ['networking', 'tcp/ip', 'dns', 'load balancing', 'vpn', 'firewall', 'nginx'] },
 
@@ -221,6 +221,45 @@ export const PROJECT_DETAILS: ProjectDetail[] = [
     lessons: [ND],
     links: [{ label: 'Repository (fork)', href: PROJECTS[2].repo }],
   },
+  {
+    id: 'gha-pipeline',
+    name: PROJECTS[3].name,
+    context: 'Personal project (2026), built after the PFE to show the same DevSecOps chain on GitHub Actions',
+    problem: 'Show a complete, publicly verifiable secure delivery pipeline that anyone can read and re-run, unlike the PFE whose cluster was shut down after the defence.',
+    architecture: 'FastAPI service → jobs: ruff + pytest (coverage gate 90%) | Gitleaks over the full history | Conftest verify + test on rendered Helm manifests → Docker build, Trivy config + image scan, CycloneDX SBOM → Helm install on a kind cluster inside CI + API smoke test → (main only) push the same image to GHCR, Cosign keyless sign + SBOM attestation + verify.',
+    tech: PROJECTS[3].tech,
+    contribution: 'Wrote the service, tests, Dockerfile, Helm chart, Rego policies with unit tests and the workflow.',
+    challenges: ['Pushing exactly the image that was scanned and deployed instead of rebuilding it (image passed between jobs as an artifact).', 'Failing only on fixable CRITICAL CVEs so the pipeline stays useful while still reporting HIGH ones.'],
+    results: ['Each run is visible in the repository Actions tab; no performance figures are claimed.'],
+    lessons: ['Least-privilege workflow permissions: only the publish job gets packages: write and id-token: write.'],
+    links: [{ label: 'Repository', href: PROJECTS[3].repo }],
+  },
+  {
+    id: 'terraform-aws',
+    name: PROJECTS[4].name,
+    context: 'Personal project (2026) to practise Terraform on AWS',
+    problem: 'Provision a small public web server on AWS with secure defaults and reviewable code.',
+    architecture: 'modules/network (VPC, 2 public subnets, IGW, flow logs to CloudWatch, emptied default SG) + modules/web (EC2 Amazon Linux 2023 from the SSM AMI parameter, IMDSv2 only, encrypted gp3, IAM role for SSM Session Manager, no SSH, Docker container run read-only) composed in envs/dev.',
+    tech: PROJECTS[4].tech,
+    contribution: 'Wrote the modules, environment, CI workflow (fmt, validate, TFLint, Trivy config, optional OIDC plan) and the documentation.',
+    challenges: [ND],
+    results: ['Validated in CI. A live deployment is not documented in the portfolio.'],
+    lessons: ['Accepted scanner findings are written down with a reason in .trivyignore instead of being silenced.'],
+    links: [{ label: 'Repository', href: PROJECTS[4].repo }],
+  },
+  {
+    id: 'ansible-monitoring',
+    name: PROJECTS[5].name,
+    context: 'Personal project (2026) to practise configuration management and observability as code',
+    problem: 'Turn a fresh Ubuntu server into a hardened, monitored host with one command, and prove it works and is idempotent.',
+    architecture: 'Roles common (packages, unattended upgrades, SSH hardening validated by sshd -t, ufw), docker (Engine + Compose v2) and monitoring (Prometheus with alert rules checked by promtool, node_exporter, Grafana with provisioned datasource and dashboard, run with Docker Compose).',
+    tech: PROJECTS[5].tech,
+    contribution: 'Wrote the roles, templates, alert rules, dashboard and the CI that converges a GitHub runner, re-runs for idempotence and queries Prometheus and Grafana.',
+    challenges: [ND],
+    results: ['Verified in CI on Ubuntu 24.04; no production use is documented.'],
+    lessons: [ND],
+    links: [{ label: 'Repository', href: PROJECTS[5].repo }],
+  },
 ]
 
 /* ------------------------------------------------------------------ */
@@ -303,12 +342,12 @@ export const INTERVIEW_BANK: Record<InterviewTopic, { level: EvidenceLevel; note
     ],
   },
   Terraform: {
-    level: 'training',
-    note: 'Training level only — no Terraform code of his own is documented. Use these to gauge fundamentals.',
+    level: 'project',
+    note: 'Personal project only (terraform-aws-webapp: modules, AWS VPC/EC2/IAM, TFLint + Trivy in CI). No production Terraform experience is documented.',
     questions: [
-      { q: 'What is Terraform state, and how should a team store and lock it?', lookFor: 'Remote backend (S3+DynamoDB, Azure Storage, Terraform Cloud), locking, no secrets in plain state, least privilege.', evidence: 'Not documented in the portfolio — tests fundamentals.' },
-      { q: 'How would you structure Terraform for dev, staging and prod?', lookFor: 'Modules, separate state per environment, variables/tfvars or workspaces, CI plan/apply with review.', evidence: 'Not documented — tests reasoning.' },
-      { q: 'How would you add security checks for Terraform to a pipeline?', lookFor: 'fmt/validate, tflint, Checkov/tfsec/Trivy config, OPA/Conftest on the plan, manual approval for apply.', evidence: 'Transferable: he already ran Trivy and OPA/Conftest policies in CI on Kubernetes manifests.', link: blog('policy-as-code-opa-conftest-gatekeeper') },
+      { q: 'What is Terraform state, and how should a team store and lock it?', lookFor: 'Remote backend (S3+DynamoDB, Azure Storage, Terraform Cloud), locking, no secrets in plain state, least privilege.', evidence: 'His repo ships an S3 backend example with native S3 locking (use_lockfile) and keeps state out of Git.', link: 'https://github.com/iyedboubakri12/terraform-aws-webapp' },
+      { q: 'How would you structure Terraform for dev, staging and prod?', lookFor: 'Modules, separate state per environment, variables/tfvars or workspaces, CI plan/apply with review.', evidence: 'His repo uses modules/ + envs/dev; only a dev environment exists, so ask how he would add prod.', link: 'https://github.com/iyedboubakri12/terraform-aws-webapp' },
+      { q: 'How would you add security checks for Terraform to a pipeline?', lookFor: 'fmt/validate, tflint, Checkov/tfsec/Trivy config, OPA/Conftest on the plan, manual approval for apply.', evidence: 'His Terraform repo runs fmt, validate, TFLint and Trivy config in GitHub Actions, with accepted findings justified in .trivyignore.', link: 'https://github.com/iyedboubakri12/terraform-aws-webapp' },
     ],
   },
   'CI/CD': {
@@ -392,7 +431,7 @@ ${exp}
 
 Main project: ${PROJECTS[0].name}. It IS the SFM Technologies final-year internship (Jan–Jun 2026): the PFE and the SFM internship are one and the same experience, never present them as two. 13-stage / 32-job GitLab CI pipeline, GitOps with Argo CD to a 3-node DigitalOcean Kubernetes cluster, OPA Conftest + Gatekeeper, Trivy, SonarQube, Gitleaks, OWASP ZAP, Cosign + CycloneDX SBOM, DefectDojo, Falco, Prometheus/Grafana, and a Python AI agent (RAG + Llama 3.3 70B via Groq) that proposes fixes in Slack for human approval.
 Reported results (his own measurements): ${HIGHLIGHTS.map((h) => `${h.label} ${h.value}`).join('; ')}.
-Other projects: STB Bank secure banking microservices (.NET Core, Angular, JWT/OAuth2, Jenkins); sports training platform (Spring Boot REST API + frontend); ESPRIT carpooling app; Azure AKS masterclass (forked training lab, not original work).
+Other projects: STB Bank secure banking microservices (.NET Core, Angular, JWT/OAuth2, Jenkins); sports training platform (Spring Boot REST API + frontend); ESPRIT carpooling app; personal repositories with CI on GitHub Actions: devsecops-github-actions-pipeline (GitHub Actions, Trivy, Conftest, kind deploy, Cosign), terraform-aws-webapp (Terraform modules for AWS, validated with TFLint/Trivy, not documented as deployed) and ansible-monitoring-stack (Ansible roles for Prometheus/Grafana, run and idempotence-checked in CI); forked labs used for practice, not original work: Azure AKS masterclass, Google Online Boutique microservices-demo, Argo CD example apps.
 
 Certifications & training: ${certs}; Building Transformer-Based NLP Applications and Fundamentals of Deep Learning (issuer not documented).
 

@@ -45,6 +45,12 @@ export type Project = {
   demo?: string
   image?: string
   note?: string
+  /** flagship = PFE, original = my own repo, academic = school project, lab = fork used for practice */
+  kind: 'flagship' | 'original' | 'academic' | 'lab'
+  /** One line a recruiter can scan: the skill this project is evidence of */
+  proves: string
+  /** Optional preview images (paths under /public) */
+  shots?: { src: string; alt: string }[]
 }
 
 export const PROJECTS: Project[] = [
@@ -57,6 +63,14 @@ export const PROJECTS: Project[] = [
     details: PFE_PATH,
     demo: PFE_PATH + '#demo',
     image: `${IMG}/global-architecture.webp`,
+    kind: 'flagship',
+    proves: 'End-to-end DevSecOps on a real Kubernetes cluster: CI/CD, GitOps, policy, supply chain, runtime security',
+    shots: [
+      { src: `${IMG}/11-argocd-synced-healthy.webp`, alt: 'Argo CD: application synced and healthy' },
+      { src: `${IMG}/07-opa-conftest-results.webp`, alt: 'OPA Conftest policy results in the pipeline' },
+      { src: `${IMG}/16-slack-ai-analysis.webp`, alt: 'Slack: AI analysis of a Falco alert' },
+      { src: `${IMG}/21-grafana-cluster-resources.webp`, alt: 'Grafana: cluster resources dashboard' },
+    ],
   },
   {
     name: 'Sports Training Management Platform',
@@ -65,6 +79,8 @@ export const PROJECTS: Project[] = [
     tech: ['Java', 'Spring Boot', 'JPA', 'WebSocket', 'REST'],
     repo: 'https://github.com/iyedboubakri12/backendsport',
     note: 'Frontend: github.com/iyedboubakri12/frontSport',
+    kind: 'academic',
+    proves: 'Backend engineering: REST API design, persistence, real-time notifications',
   },
   {
     name: 'Azure AKS Kubernetes Masterclass (lab)',
@@ -73,6 +89,55 @@ export const PROJECTS: Project[] = [
     tech: ['Azure', 'AKS', 'Kubernetes', 'Terraform'],
     repo: 'https://github.com/iyedboubakri12/azure-aks-kubernetes-masterclass',
     note: 'Fork used for training',
+    kind: 'lab',
+    proves: 'Hands-on AKS practice (fork of a public course repository)',
+  },
+  {
+    name: 'DevSecOps Pipeline on GitHub Actions',
+    summary:
+      'Every push to a small FastAPI service runs lint and tests (coverage gate), Gitleaks over the full history and OPA/Conftest policies with their own unit tests. It then builds a hardened non-root image, runs Trivy config and image scans, generates a CycloneDX SBOM, deploys with Helm to a kind Kubernetes cluster inside CI and smoke-tests the API. On main, the tested image is pushed to GHCR and signed keyless with Cosign.',
+    tech: ['GitHub Actions', 'Docker', 'Kubernetes (kind)', 'Helm', 'OPA / Conftest', 'Trivy', 'Gitleaks', 'Cosign', 'Python', 'pytest'],
+    repo: 'https://github.com/iyedboubakri12/devsecops-github-actions-pipeline',
+    kind: 'original',
+    proves: 'GitHub Actions CI/CD with supply-chain security and a real Kubernetes deploy in CI',
+  },
+  {
+    name: 'Terraform AWS Web Stack',
+    summary:
+      'Reusable Terraform modules for a secure-by-default AWS stack: a VPC across two AZs with flow logs and an emptied default security group, plus an EC2 instance with IMDSv2 only, an encrypted disk, no SSH (SSM Session Manager) and a read-only container. CI runs fmt, validate, TFLint (AWS ruleset) and a Trivy IaC scan. A plan job authenticates through GitHub OIDC when a role is configured.',
+    tech: ['Terraform', 'AWS', 'VPC', 'EC2', 'IAM', 'SSM', 'TFLint', 'Trivy', 'GitHub Actions'],
+    repo: 'https://github.com/iyedboubakri12/terraform-aws-webapp',
+    kind: 'original',
+    proves: 'Infrastructure as Code: Terraform modules, AWS networking and IAM, IaC security scanning',
+  },
+  {
+    name: 'Ansible Monitoring Server',
+    summary:
+      'Ansible roles that turn a fresh Ubuntu server into a hardened, monitored host: SSH hardening validated with sshd -t, ufw, automatic security updates and Docker. They also deploy Prometheus, node_exporter and Grafana with a provisioned datasource, alert rules and a dashboard. CI runs the playbook on a real Ubuntu runner, checks idempotence and queries Prometheus and Grafana.',
+    tech: ['Ansible', 'Prometheus', 'Grafana', 'node_exporter', 'Docker Compose', 'Linux', 'GitHub Actions'],
+    repo: 'https://github.com/iyedboubakri12/ansible-monitoring-stack',
+    kind: 'original',
+    proves: 'Configuration management and observability as code, tested for idempotence',
+  },
+  {
+    name: 'Online Boutique microservices (lab)',
+    summary:
+      "Fork of Google Cloud's 11-service demo application (gRPC, several languages), kept as a realistic workload to practise Kubernetes deployments, Helm and observability.",
+    tech: ['Kubernetes', 'Helm', 'gRPC', 'Microservices'],
+    repo: 'https://github.com/iyedboubakri12/microservices-demo',
+    note: 'Fork of GoogleCloudPlatform/microservices-demo',
+    kind: 'lab',
+    proves: 'Practice workload for Kubernetes (fork, not my own code)',
+  },
+  {
+    name: 'Argo CD example apps (lab)',
+    summary:
+      'Fork of the official Argo CD examples (plain manifests, Helm, Kustomize, sync waves), used to practise GitOps patterns beyond what my final-year project needed.',
+    tech: ['Argo CD', 'GitOps', 'Helm', 'Kustomize'],
+    repo: 'https://github.com/iyedboubakri12/argocd-example-apps',
+    note: 'Fork of argoproj/argocd-example-apps',
+    kind: 'lab',
+    proves: 'GitOps practice (fork, not my own code)',
   },
 ]
 

@@ -3,11 +3,10 @@ import { PROFILE } from '../data'
 import { GitHubIcon, LinkedInIcon, MailIcon } from './Icons'
 
 const LINKS = [
-  ['About', '/#about'],
-  ['Skills', '/#skills'],
   ['Projects', '/#projects'],
   ['Experience', '/#experience'],
-  ['Certifications', '/#certifications'],
+  ['Stack', '/#skills'],
+  ['About', '/#about'],
   ['Blog', '/blog'],
   ['Recruiter mode', '/recruiter'],
   ['Contact', '/#contact'],
@@ -28,8 +27,8 @@ export function Nav({ onSubPage }: { onSubPage: boolean }) {
     <header className={`nav ${scrolled ? 'nav--scrolled' : ''}`}>
       <div className="container nav__inner">
         <a href="/" className="nav__brand" aria-label="Iyed Boubakri, home">
-          <span className="nav__logo" aria-hidden="true">IB</span>
-          <span>Iyed Boubakri</span>
+          <span className="nav__logo" aria-hidden="true">&gt;_</span>
+          <span>iyed<span className="nav__brand-dim">.boubakri</span></span>
         </a>
         <button
           className="nav__toggle"
@@ -71,11 +70,11 @@ export function Footer() {
   )
 }
 
-export function Section({ id, eyebrow, title, children }: { id: string; eyebrow: string; title: string; children: ReactNode }) {
+export function Section({ id, eyebrow, cmd, title, children }: { id: string; eyebrow?: string; cmd?: string; title: string; children: ReactNode }) {
   return (
     <section id={id} className="section reveal">
       <div className="container">
-        <p className="eyebrow">{eyebrow}</p>
+        {cmd ? <p className="prompt prompt--section"><span className="prompt__path">~</span>$ {cmd}</p> : <p className="eyebrow">{eyebrow}</p>}
         <h2 className="section__title">{title}</h2>
         {children}
       </div>
